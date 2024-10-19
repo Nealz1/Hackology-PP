@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wykresy Sprzedaży i Statystyki</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background-color: #017abc;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #005b8a;
+        }
+
+        .charts-and-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container {
+            width: 45%;
+            margin-bottom: 20px;
+        }
+
+        .stats-container {
+            width: 45%;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #017abc;
+            margin-bottom: 40px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #005b8a;
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+
+        footer {
+            background-color: #017abc;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .charts-and-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .chart-container, .stats-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Strona główna</a></li>
+                <li><a href="formularz.html">Dodaj produkt</a></li>
+                <li><a href="wykresy.html" class="active">Wykresy i Statystyki</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="charts-and-stats">
+        <!-- Pierwszy wykres -->
+        <div class="chart-container">
+            <canvas id="chart1"></canvas>
+        </div>
+
+        <!-- Statystyki po lewej -->
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-value">60%</div>
+                <div class="stat-label">Wzrost sprzedaży</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">Cena: 150 PLN</div>
+            </div>
+        </div>
+
+        <!-- Drugi wykres -->
+        <div class="chart-container">
+            <canvas id="chart2"></canvas>
+        </div>
+
+        <!-- Trzeci wykres -->
+        <div class="chart-container">
+            <canvas id="chart3"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Wsparcie Sprzedaży</p>
+    </footer>
+
+    <script>
+        // Dane do pierwszego wykresu - wykres kołowy
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        const chart1 = new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ['Produkt A', 'Produkt B', 'Produkt C'],
+                datasets: [{
+                    data: [30, 40, 30],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ]
+                }]
+            }
+        });
+
+        // Dane do drugiego wykresu - wykres liniowy
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        const chart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec'],
+                datasets: [{
+                    label: 'Sprzedaż w tysiącach',
+                    data: [120, 150, 180, 200, 170, 190],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Dane do trzeciego wykresu - wykres słupkowy
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        const chart3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Produkt A', 'Produkt B', 'Produkt C'],
+                datasets: [{
+                    label: 'Liczba sprzedanych produktów',
+                    data: [120, 90, 150],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
