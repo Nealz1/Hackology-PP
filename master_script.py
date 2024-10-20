@@ -1,6 +1,5 @@
 import concurrent.futures
 import threading
-
 # Import the functions from the refactored scripts
 from PP_RFR import run_random_forest
 from PP_Prophet import run_prophet

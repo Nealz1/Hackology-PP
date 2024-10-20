@@ -29,9 +29,9 @@ def run_prophet():
     forecast = model.predict(future)
 
     # Visualize the forecast
-    model.plot(forecast)
-    plt.title(f'Demand Forecast for {product} in {region}')
-    plt.show()
+    #model.plot(forecast)
+    #plt.title(f'Demand Forecast for {product} in {region}')
+    #plt.show()
 
     text_output_file = './Output/results.txt'
     with open(text_output_file, 'a') as file:
