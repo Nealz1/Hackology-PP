@@ -3,6 +3,7 @@ def run_decision_tree():
     from sklearn.model_selection import train_test_split
     from sklearn.tree import DecisionTreeRegressor
     from sklearn.metrics import mean_squared_error
+    import app
 
     # Wczytanie danych z pliku CSV
     file_path = 'GDS.csv'
@@ -26,11 +27,11 @@ def run_decision_tree():
 
     model.fit(X_train, y_train)
 
-    nazwa=''
-    kategoria=''
-    ilosc=0
-    wojewodztwo=''
-    miesiac=0
+    nazwa=app.product_name
+    kategoria=app.category
+    ilosc=app.quantity
+    wojewodztwo=app.region
+    miesiac=app.start_month
     promocja=0
 
     # Nowe dane (zastąp wartości rzeczywistymi danymi)

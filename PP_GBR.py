@@ -1,9 +1,10 @@
-
 def run_gradient_boosting():
     import pandas as pd
     from sklearn.model_selection import train_test_split
     from sklearn.ensemble import GradientBoostingRegressor
     from sklearn.metrics import mean_squared_error
+    import app
+
     # Load data
     sales_data = pd.read_csv("GDS.csv")
     distance_matrix = pd.read_csv("Distances.csv")
@@ -78,9 +79,8 @@ def run_gradient_boosting():
         return best_regions
 
     ################################################################################################################
-    #TUTAJ MAREK TRZEBA ZMIENIC#
-    product = "Piwo"
-    region_from = "Mazowieckie"
+    product = app.product_name
+    region_from = app.region
 
     # Predict the best regions to sell the product with transportation cost and saturation penalty
     best_regions_with_saturation = predict_best_region_with_saturation(product, region_from, sales_data, distance_matrix)

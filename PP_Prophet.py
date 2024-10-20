@@ -1,6 +1,7 @@
 def run_prophet():
     import pandas as pd
     from prophet import Prophet
+    import app
     import matplotlib.pyplot as plt
     # Load your dataset
     df = pd.read_csv("GDS.csv")
@@ -10,8 +11,8 @@ def run_prophet():
 
     # Filter data for a specific product and region for forecasting
     ############################################################
-    product = 'Piwo'  # Example product
-    region = 'Mazowieckie'  # Example region
+    product = app.product_name  # Example product
+    region = app.region  # Example region
 
     # Filter the dataset for the selected product and region
     filtered_df = df[(df['Nazwa produktu'] == product) & (df['Wojewodztwo'] == region)]
@@ -29,10 +30,10 @@ def run_prophet():
     forecast = model.predict(future)
 
     # Visualize the forecast
-    #model.plot(forecast)
-    #plt.title(f'Demand Forecast for {product} in {region}')
-    #plt.show()
-
+    model.plot(forecast)
+    plt.title(f'Demand Forecast for {product} in {region}')
+    plt.show()
+    print("PROPHET SIE WYJEBAL")
     text_output_file = './Output/results.txt'
     with open(text_output_file, 'a') as file:
         file.write("#MODEL Prophet#\n")
