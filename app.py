@@ -23,6 +23,9 @@ def submit():
     end_month = request.form['end_month']
     price = request.form.get('price', None)
 
+    text_output_file = './Output/dane.txt'
+    with open(text_output_file, 'w') as file:
+        file.write(product_name + '\n' + region)
     master_script.main()
     return f"Skrypt master_script.py został uruchomiony {product_name}, {region}"
 

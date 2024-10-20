@@ -6,8 +6,6 @@ def run_random_forest():
     from sklearn.metrics import mean_squared_error
     from sklearn.preprocessing import StandardScaler
 
-
-
     # Wczytanie danych
     data = pd.read_csv('GDS.csv')
 

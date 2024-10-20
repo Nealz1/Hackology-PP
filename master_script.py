@@ -12,7 +12,7 @@ def main():
             executor.submit(run_prophet),
             executor.submit(run_gradient_boosting),
             executor.submit(run_decision_tree),
-            #executor.submit(run_random_forest)
+            executor.submit(run_random_forest)
         ]
 
         for future in concurrent.futures.as_completed(futures):

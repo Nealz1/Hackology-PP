@@ -1,10 +1,10 @@
+
 def run_gradient_boosting():
     import pandas as pd
     from sklearn.model_selection import train_test_split
     from sklearn.ensemble import GradientBoostingRegressor
     from sklearn.metrics import mean_squared_error
     import app
-
     # Load data
     sales_data = pd.read_csv("GDS.csv")
     distance_matrix = pd.read_csv("Distances.csv")
@@ -79,10 +79,14 @@ def run_gradient_boosting():
         return best_regions
 
     ################################################################################################################
-    product = app.product_name
-    region_from = app.region
+    text_input_file = './Output/dane.txt'
+    with open(text_input_file, 'r') as file:
+        lines = file.readlines()
+        if len(lines) >= 2:
+            product = lines[0].strip()
+            region_from = lines[1].strip()
 
-    # Predict the best regions to sell the product with transportation cost and saturation penalty
+        # Predict the best regions to sell the product with transportation cost and saturation penalty
     best_regions_with_saturation = predict_best_region_with_saturation(product, region_from, sales_data, distance_matrix)
 
     # Add this before printing the DataFrame to show all columns fully
